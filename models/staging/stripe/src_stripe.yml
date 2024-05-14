@@ -2,11 +2,24 @@ version: 2
 
 sources:
   - name: stripe
+    description: A clone of a Postgres application database.
     database: raw
     schema: stripe
     tables:
       - name: payment
+        description: a raw data for payments
         loaded_at_field: _batched_at
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: id 
+            description: primary key for payment
+          - name: orderid
+            description: id for the orders 
+          - name: paymentmethod
+            description: the payment method that been placed
+          - name: status 
+            description: status of the payment 
+          - name: amount 
+            description: amount of the payment placed by cent not dollar
