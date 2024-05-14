@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_stripe__payments
+    description: payment that been placed for the orders in jaffle shop app.
+    columns:
+      - name: payment_id 
+        description: primary key 
+        tests:
+          - unique
+      - name: order_id
+        description: orders id 
+      - name: payment_method
+        description: '{{doc("payment_method")}}'
+        tests:
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+      - name: status
+        description: '{{doc("payment_status")}}'
+        tests:
+          - accepted_values:
+              values: ['success', 'fail']
+      - name: amount
+        description: amount transefred to dollars.
+      - name: created_at
+        description: the date that been created at it 
